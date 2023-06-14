@@ -12,6 +12,7 @@ public class MongoHandler {
     private MongoClient client;
     private MongoDatabase mainDB;
     private MongoCollection<Document> ranks;
+    private MongoCollection<Document> profiles;
 
     public void connect() {
         instance = this;
@@ -19,6 +20,7 @@ public class MongoHandler {
 
         mainDB = client.getDatabase("Salty");
         ranks = mainDB.getCollection("ranks");
+        profiles = mainDB.getCollection("profiles");
     }
 
     public MongoDatabase getMainDB() {
@@ -27,5 +29,9 @@ public class MongoHandler {
 
     public MongoCollection<Document> getRanks() {
         return ranks;
+    }
+
+    public MongoCollection<Document> getProfiles() {
+        return profiles;
     }
 }

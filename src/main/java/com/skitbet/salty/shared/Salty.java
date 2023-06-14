@@ -1,6 +1,8 @@
 package com.skitbet.salty.shared;
 
 import com.skitbet.salty.bungee.SaltyBungee;
+import com.skitbet.salty.shared.profile.Profile;
+import com.skitbet.salty.shared.profile.ProfileManager;
 import com.skitbet.salty.spigot.SaltyPlugin;
 import com.skitbet.salty.shared.handlers.MongoHandler;
 import com.skitbet.salty.shared.rank.RankHandler;
@@ -12,6 +14,7 @@ public class Salty {
     private MongoHandler mongoHandler;
 
     private RankHandler rankHandler;
+    private ProfileManager profileManager;
 
     public void onLoad() {
         INSTANCE = this;
@@ -23,6 +26,9 @@ public class Salty {
     public void onEnable() {
         this.rankHandler = new RankHandler();
         this.rankHandler.init();
+
+        this.profileManager = new ProfileManager();
+        this.profileManager.init();
     }
 
     public void onDisabled() {
@@ -42,5 +48,9 @@ public class Salty {
 
     public RankHandler getRankHandler() {
         return rankHandler;
+    }
+
+    public ProfileManager getProfileManager() {
+        return profileManager;
     }
 }
