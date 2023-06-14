@@ -1,5 +1,7 @@
 package com.skitbet.salty.shared.rank;
 
+import com.mongodb.client.MongoCursor;
+import com.mongodb.client.model.changestream.ChangeStreamDocument;
 import com.skitbet.salty.shared.Logger;
 import com.skitbet.salty.shared.handlers.MongoHandler;
 import org.bson.Document;
@@ -24,11 +26,22 @@ public class RankHandler {
         }
 
         // Create default rank if it does not exist yet.
-        if (rankExistsInSaved("default")) {
+        if (!rankExistsInSaved("default")) {
             createRank("Default");
         }
 
         Logger.info("&aLoaded &7" + savedRanks.size() + "&a ranks from the database.");
+    }
+
+    public void update(String id) {
+        // Check if rank already exists
+        if (!rankExistsInSaved(id)) {
+            return;
+        }
+
+        // Get rank and update it
+        Rank rank = getRankInSaved(id);
+        rank.update(getRanksDocument(id));
     }
 
     public void createRank(String name) {
@@ -79,6 +92,10 @@ public class RankHandler {
             }
         }
         return false;
+    }
+
+    public Document getRanksDocument(String id) {
+        return mongoHandler.getRanks().find(new Document("_id", id)).first();
     }
 
     public Rank fromDocument(Document document) {

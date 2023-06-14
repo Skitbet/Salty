@@ -50,6 +50,17 @@ public class Rank {
         Salty.INSTANCE.getMongoHandler().getRanks().insertOne(toDocument());
     }
 
+    public void update(Document newDoc) {
+        System.out.println("updated rank " + newDoc.getString("_id") );
+        this.displayName = newDoc.getString("displayName");
+        this.prefix = newDoc.getString("prefix");
+        this.color = newDoc.getString("color");
+        this.priority = newDoc.getInteger("priority");
+        this.parents = newDoc.getList("parents", String.class);
+        this.permissions = newDoc.getList("permissions", String.class);
+
+    }
+
     public Document toDocument() {
         return new Document("_id", this.id)
                 .append("displayName", this.displayName)
