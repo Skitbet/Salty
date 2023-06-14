@@ -1,4 +1,4 @@
-# Salty Core - Version 1.19.4
+# Salty Core - Not released yet! 
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/Skitbet/Salty)
 
