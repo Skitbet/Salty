@@ -1,8 +1,7 @@
-package xyz.beanymc.shared.rank;
+package com.skitbet.salty.shared.rank;
 
 import org.bson.Document;
-import xyz.beanymc.shared.Salty;
-import xyz.beanymc.spigot.SaltyPlugin;
+import com.skitbet.salty.shared.Salty;
 
 import java.util.ArrayList;
 import java.util.List;

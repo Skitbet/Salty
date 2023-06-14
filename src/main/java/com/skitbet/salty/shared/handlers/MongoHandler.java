@@ -1,4 +1,4 @@
-package xyz.beanymc.shared.handlers;
+package com.skitbet.salty.shared.handlers;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;

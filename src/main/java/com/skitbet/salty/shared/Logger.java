@@ -1,8 +1,8 @@
-package xyz.beanymc.shared;
+package com.skitbet.salty.shared;
 
 import org.bukkit.ChatColor;
-import xyz.beanymc.bungee.SaltyBungee;
-import xyz.beanymc.spigot.SaltyPlugin;
+import com.skitbet.salty.bungee.SaltyBungee;
+import com.skitbet.salty.spigot.SaltyPlugin;
 
 public class Logger {
 

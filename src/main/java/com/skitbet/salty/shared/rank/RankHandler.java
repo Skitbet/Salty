@@ -1,8 +1,8 @@
-package xyz.beanymc.shared.rank;
+package com.skitbet.salty.shared.rank;
 
+import com.skitbet.salty.shared.Logger;
+import com.skitbet.salty.shared.handlers.MongoHandler;
 import org.bson.Document;
-import xyz.beanymc.shared.Logger;
-import xyz.beanymc.shared.handlers.MongoHandler;
 
 import java.util.ArrayList;
 import java.util.List;

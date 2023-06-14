@@ -1,9 +1,7 @@
-package xyz.beanymc.spigot;
+package com.skitbet.salty.spigot;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import xyz.beanymc.shared.Salty;
-import xyz.beanymc.shared.handlers.MongoHandler;
-import xyz.beanymc.shared.rank.RankHandler;
+import com.skitbet.salty.shared.Salty;
 
 public class SaltyPlugin extends JavaPlugin {
 

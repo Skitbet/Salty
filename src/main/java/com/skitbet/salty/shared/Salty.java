@@ -1,9 +1,9 @@
-package xyz.beanymc.shared;
+package com.skitbet.salty.shared;
 
-import xyz.beanymc.bungee.SaltyBungee;
-import xyz.beanymc.shared.handlers.MongoHandler;
-import xyz.beanymc.shared.rank.RankHandler;
-import xyz.beanymc.spigot.SaltyPlugin;
+import com.skitbet.salty.bungee.SaltyBungee;
+import com.skitbet.salty.spigot.SaltyPlugin;
+import com.skitbet.salty.shared.handlers.MongoHandler;
+import com.skitbet.salty.shared.rank.RankHandler;
 
 public class Salty {
 

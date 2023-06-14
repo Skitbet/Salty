@@ -1,9 +1,7 @@
-package xyz.beanymc.bungee;
+package com.skitbet.salty.bungee;
 
 import net.md_5.bungee.api.plugin.Plugin;
-import xyz.beanymc.shared.Salty;
-import xyz.beanymc.shared.handlers.MongoHandler;
-import xyz.beanymc.shared.rank.RankHandler;
+import com.skitbet.salty.shared.Salty;
 
 public class SaltyBungee extends Plugin {
 

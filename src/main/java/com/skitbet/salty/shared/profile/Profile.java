@@ -1,6 +1,6 @@
-package xyz.beanymc.shared.profile;
+package com.skitbet.salty.shared.profile;
 
-import xyz.beanymc.shared.rank.Rank;
+import com.skitbet.salty.shared.rank.Rank;
 
 import java.util.List;
 import java.util.UUID;
