@@ -1,10 +1,10 @@
-# Salty Core - Version 1.19.4
+# Salty Core - Not released yet! 
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/Skitbet/SAlty)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/Skitbet/Salty)
 
 Welcome to the official repository of Salty Core. This is a powerful and flexible Minecraft server core that is fully compatible with BungeeCord.
 
-## Features
+## Planned Features
 
 - **Minecraft 1.19.4 Support:** Salty Core is built on Minecraft version 1.19.4, ensuring compatibility with the latest game features and improvements.
 
