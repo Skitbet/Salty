@@ -18,37 +18,43 @@ public class RankHandler {
     }
 
     public void init() {
+        // Load all ranks in database
         for (Document document : mongoHandler.getRanks().find()) {
-            Rank rank = fromDocument(document);
-            if (rankExistsInSaved(rank.getId())) {
-                // TODO: Figure out why there may be 2, not a issue yet, will fix it if or when it becomes a issue
-                continue;
-            }
-            savedRanks.add(rank);
+            savedRanks.add(fromDocument(document));
         }
-        if (savedRanks.size() == 0) {
+
+        // Create default rank if it does not exist yet.
+        if (rankExistsInSaved("default")) {
             createRank("Default");
         }
+
         Logger.info("&aLoaded &7" + savedRanks.size() + "&a ranks from the database.");
     }
 
     public void createRank(String name) {
+        // Check if rank already exists
         if (rankExistsInSaved(name.toLowerCase())) {
             return;
         }
+
+        // Make new instance of rank and save it
         Rank rank = new Rank(name.toLowerCase(), name, "&7");
         savedRanks.add(rank);
+
         Logger.info("&aCreated the &7" + rank.getDisplayName() + " &arank!");
     }
 
     public void deleteRank(String id) {
+        // Check if rank doesn't exists, if it doesn't we don't do anything
         if (!rankExistsInSaved(id)) {
             return;
         }
 
+        // Get the rank and remove it from the saved list
         Rank rank = getRankInSaved(id);
         savedRanks.remove(rank);
 
+        // Remove rank from database
         for (Document document : mongoHandler.getRanks().find()) {
             if (document.getString("_id").equalsIgnoreCase(id)) {
                 mongoHandler.getRanks().deleteOne(document);
