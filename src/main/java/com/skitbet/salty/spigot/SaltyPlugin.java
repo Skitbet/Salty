@@ -29,8 +29,8 @@ public class SaltyPlugin extends JavaPlugin implements PluginMessageListener {
         checkIfBungee();
         if (!getServer().getPluginManager().isPluginEnabled(this)) return;
 
-        getServer().getMessenger().registerIncomingPluginChannel( this, "salty:update", this );
-        getServer().getMessenger().registerOutgoingPluginChannel( this, "salty:update" );
+        getServer().getMessenger().registerIncomingPluginChannel( this, "salty:update", this);
+        getServer().getMessenger().registerOutgoingPluginChannel( this, "salty:update");
     }
 
     @Override
