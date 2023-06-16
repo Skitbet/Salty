@@ -5,11 +5,8 @@ import com.skitbet.salty.shared.Logger;
 import com.skitbet.salty.shared.Salty;
 import com.skitbet.salty.shared.handlers.MongoHandler;
 import com.skitbet.salty.shared.rank.Rank;
-<<<<<<< Updated upstream
 import com.skitbet.salty.shared.rank.RankHandler;
-=======
 import com.skitbet.salty.spigot.SaltyPlugin;
->>>>>>> Stashed changes
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -19,37 +16,19 @@ import java.util.UUID;
 
 public class ProfileManager {
 
-<<<<<<< Updated upstream
     public HashMap<UUID, Profile> savedProfiles = new HashMap<>();
 
     private final MongoHandler mongoHandler = MongoHandler.instance;
 
-    public void init() {
-        for (Document document : mongoHandler.getProfiles().find()) {
-            Profile profile = fromDocument(document);
-            savedProfiles.put(profile.uuid, profile);
-        }
-
-        Logger.info("&aLoaded &7" + savedProfiles.size() + "&a profiles from the database.");
-=======
-    public List<Profile> onlineProfiles;
-
-    private MongoHandler mongoHandler = MongoHandler.instance;
-
-    public ProfileManager() {
-        this.onlineProfiles = new ArrayList<>();
-    }
-
     public void update(String id) {
         UUID uuid = UUID.fromString(id);
-        // Check if rank already exists
-        if (!profile(uuid)) {
+        if (!profileExistsInSaved(uuid)) {
             return;
         }
 
         // Get profile and update it
         Profile profile = getProfileFromDB(uuid);
->>>>>>> Stashed changes
+        profile.update(getProfileDocument(uuid));
     }
 
     public Profile createProfile(String name, UUID uuid) {
@@ -57,17 +36,13 @@ public class ProfileManager {
             return null;
         }
         Profile profile = new Profile(uuid, name);
-<<<<<<< Updated upstream
         savedProfiles.put(uuid, profile);
-=======
-        onlineProfiles.add(profile);
 
         if (Salty.isBungee()) {
             SaltyBungee.INSTANCE.massPlayerUpdate(uuid.toString());
         }else {
-            SaltyPlugin.INSTANCE.getServer().sendPluginMessage("");
+            SaltyPlugin.INSTANCE.getServer().sendPluginMessage();
         }
->>>>>>> Stashed changes
 
         Logger.info("&aCreated a profile with the UUID of &7" + profile.getUuid() );
         return profile;
@@ -85,12 +60,8 @@ public class ProfileManager {
             return;
         }
 
-<<<<<<< Updated upstream
-        Profile profile = getProfileInSaved(id);
-        savedProfiles.remove(profile.uuid);
+        savedProfiles.remove(id);
 
-=======
->>>>>>> Stashed changes
         for (Document document : mongoHandler.getProfiles().find()) {
             if (document.getString("_id").equals(id.toString())) {
                 // Deleting it from database
@@ -98,38 +69,28 @@ public class ProfileManager {
 
                 // Check if its online, if so remove
                 Profile profile = fromDocument(document);
-                if (profileExistsFromOnline(profile.getUuid())) {
-                    onlineProfiles.remove(profile);
-                }
+
+
                 Logger.info("&cDeleted the &7" + profile.getUuid() + " &cProfile!");
             }
         }
     }
 
-<<<<<<< Updated upstream
     public Profile getProfileInSaved(UUID id) {
         return savedProfiles.getOrDefault(id, null);
     }
 
     public boolean profileExistsInSaved(UUID id) {
         return savedProfiles.containsKey(id);
-=======
-    public Profile getProfileFromOnline(UUID id) {
-        for (Profile onlineProfile : onlineProfiles) {
-            if (onlineProfile.getUuid().toString().equalsIgnoreCase(id.toString())) {
-                return onlineProfile;
+    }
+
+    public Document getProfileDocument(UUID id) {
+        for (Document document : mongoHandler.getProfiles().find()) {
+            if (document.getString("_id").equalsIgnoreCase(id.toString())) {
+                return document;
             }
         }
         return null;
-    }
-
-    public boolean profileExistsFromOnline(UUID id) {
-        for (Profile onlineProfile : onlineProfiles) {
-            if (onlineProfile.getUuid().toString().equalsIgnoreCase(id.toString())) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public Profile getProfileFromDB(UUID id) {
@@ -148,7 +109,6 @@ public class ProfileManager {
             }
         }
         return false;
->>>>>>> Stashed changes
     }
 
     public Profile fromDocument(Document document) {
