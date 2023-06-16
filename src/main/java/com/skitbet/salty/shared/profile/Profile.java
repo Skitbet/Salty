@@ -43,6 +43,11 @@ public class Profile {
         Salty.INSTANCE.getMongoHandler().getRanks().insertOne(toDocument());
     }
 
+    public void update(Document document) {
+        this.rank = rank;
+        this.permissions = permissions;
+    }
+
     public Document toDocument() {
         return new Document("_id", this.uuid.toString())
                 .append("name", this.name)

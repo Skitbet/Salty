@@ -36,6 +36,7 @@ public class RankHandler {
     public void update(String id) {
         // Check if rank already exists
         if (!rankExistsInSaved(id)) {
+
             return;
         }
 

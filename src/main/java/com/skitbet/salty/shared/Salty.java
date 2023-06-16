@@ -28,7 +28,6 @@ public class Salty {
         this.rankHandler.init();
 
         this.profileManager = new ProfileManager();
-        this.profileManager.init();
     }
 
     public void onDisabled() {

@@ -3,6 +3,7 @@ package com.skitbet.salty.spigot;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
+import com.skitbet.salty.shared.util.MessageStatus;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.skitbet.salty.shared.Salty;
@@ -45,13 +46,13 @@ public class SaltyPlugin extends JavaPlugin implements PluginMessageListener {
         ByteArrayDataInput in = ByteStreams.newDataInput(bytes);
 
         String subChannel = in.readUTF();
-        switch (subChannel) {
-            case "massrankupdate" -> {
-                String rankID = in.readUTF();
-                Salty.INSTANCE.getRankHandler().update(rankID);
-            }
-        }
+        String id = in.readUTF();
 
+        if (subChannel.equals(MessageStatus.ANNOUNCE_RANK_UPDATE)) {
+            Salty.INSTANCE.getRankHandler().update(id);
+        }else if (subChannel.equals(MessageStatus.ANNOUNCE_PLAYER_UPDATE)) {
+            Salty.INSTANCE.getProfileManager().update(id);
+        }
     }
 
     private void checkIfBungee()
